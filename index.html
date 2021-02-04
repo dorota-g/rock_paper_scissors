@@ -10,12 +10,8 @@ function computerPlay(array) {
 return array[Math.floor(Math.random()*array.length)];   
 }
 let allPossibleComputerSelections = ["rock", "paper", "scissors"];
-// console.log(computerPlay(computerSelection));
-// console.log("Compututer picked " + computerSelection);
-// console.log(playerInput);
 let playerScore = 0;
 let computerScore = 0;
-
 function playRound() {
 let playerInput = prompt("Choose: Rock, paper or scissors?");
 let playerSelection = playerInput.toLowerCase();
@@ -42,8 +38,6 @@ else
 {message = "It's a draw!"};
 return message;
 }
-// console.log(playRound);
-// playRound();
 function displayCurrentScores(computerScore, playerScore) {
   message = ("Computer: " + computerScore + " " + "You: " + playerScore);
   return message;

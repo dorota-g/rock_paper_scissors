@@ -6,8 +6,71 @@
 </head>
 <body>
   <script>
+function computerPlay(array) {
+return array[Math.floor(Math.random()*array.length)];   
+}
+let allPossibleComputerSelections = ["rock", "paper", "scissors"];
+// console.log(computerPlay(computerSelection));
+// console.log("Compututer picked " + computerSelection);
+// console.log(playerInput);
+let playerScore = 0;
+let computerScore = 0;
 
-    
+function playRound() {
+let playerInput = prompt("Choose: Rock, paper or scissors?");
+let playerSelection = playerInput.toLowerCase();
+let computerSelection = computerPlay(allPossibleComputerSelections);
+if (computerSelection=="rock" && playerSelection=="paper")
+{ message = "Paper beats Rock, you win!";
+++playerScore}
+else if (computerSelection == "rock" && playerSelection == "scissors")
+{ message = "Rock beats Scissors, you lose!" ;
+++computerScore}
+else if (computerSelection == "paper" && playerSelection == "rock")
+{ message = "Paper beats Rock, you lose!" ;
+++computerScore}
+else if (computerSelection == "paper" && playerSelection == "scissors")
+{ message = "Scissors beat Paper, you win!";
+++playerScore}
+else if (computerSelection == "scissors" && playerSelection == "paper")
+{ message = "Scissors beat Paper, you lose!" ;
+++computerScore}
+else if (computerSelection == "scissors" && playerSelection == "rock")
+{ message = "Rock beats Scissors, you win!";
+playerScore = (playerScore = playerScore + 1)}
+else
+{message = "It's a draw!"};
+return message;
+}
+// console.log(playRound);
+// playRound();
+function displayCurrentScores(computerScore, playerScore) {
+  message = ("Computer: " + computerScore + " " + "You: " + playerScore);
+  return message;
+}
+function declareWinner(computerScore, playerScore) {
+  if (computerScore < playerScore) {
+    message = "Congratulations, you won the game!"
+  }
+  else if (computerScore > playerScore) {
+    message = "Oh no, you lost the game!"
+  }
+  else {
+    message = "The game ends in a draw!"
+  }
+  return message;
+}  
+function playGame() {
+  for (i = 0; i < 5; i++) {
+    //here computerSelection and playerSelection should change
+    console.log(playRound()); 
+    console.log(displayCurrentScores(computerScore, playerScore));
+  }
+  console.log(declareWinner(computerScore, playerScore));
+}
+
+playGame();
+
   </script>
 </body>
 </html>

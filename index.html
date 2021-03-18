@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <title>Page Title</title>
@@ -12,8 +12,6 @@ return array[Math.floor(Math.random()*array.length)];
 let allPossibleComputerSelections = ["rock", "paper", "scissors"];
 let playerScore = 0;
 let computerScore = 0;
-
-
 
 function playRound() {
 let playerInput = prompt("Choose: Rock, paper or scissors?");
@@ -44,8 +42,6 @@ else
 return message;
 }
 
-
-
 function displayCurrentScores(computerScore, playerScore) {
   message = ("Computer: " + computerScore + " " + "You: " + playerScore);
   return message;
@@ -69,9 +65,249 @@ function playGame() {
   }
   console.log(declareWinner(computerScore, playerScore));
 }
-
 playGame();
-
   </script>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+    <meta charset="UTF-8" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: rgba(247, 230, 2, 0.555);
+      }
+      header {
+        text-align: center;
+        font-family: fantasy;
+        font-size: x-large;
+        padding: 30px;
+      }
+      div {
+        text-align: center;
+        padding: 35px;
+        font-size: x-large;
+      }
+      button {
+        text-align: center;
+        padding: 20px;
+      }
+      .btn {
+        border: solid 3px black;
+        color: white;
+        padding: 15px 35px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 26px;
+        margin: 4px 2px;
+        cursor: pointer;
+        background-color: black;
+        visibility: visible;
+      }
+      .btn:hover {
+        border: solid 3px white;
+      }
+      .green-border {
+        border: solid 3px rgb(30, 255, 0);
+        box-shadow: 0 0 8px rgb(20, 146, 4);
+      }
+      .red-border {
+        border: solid 3px rgb(255, 0, 0);
+        box-shadow: 0 0 8px rgb(136, 3, 3);
+      }
+      .scores {
+        border: 5px solid black;
+        width: 150px;
+        margin: 10px auto;
+        border-radius: 33%;
+        font-size: xx-large;
+        position: relative;
+      }
+      .score {
+        background: black;
+        color: white;
+      }
+      .play-again {
+        border: solid 3px black;
+        color: white;
+        padding: 15px 35px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 26px;
+        margin: 4px 2px;
+        cursor: pointer;
+        background-color: black;
+        visibility: hidden;
+      }
+      .play-again:hover {
+        border: solid 3px white;
+      }
+      #plscore {
+        position: absolute;
+        top: 0;
+        left: -218px;
+      }
+      #cpscore {
+        position: absolute;
+        top: 0;
+        right: -250px;
+      }
+    </style>
+  </head>
+  <body>
+    <header><h1>ROCK PAPER SCISSORS</h1></header>
+    <div><p>First one to get 5 points wins!</p></div>
+    <div class="buttonholder">
+      <button class="btn" id="rock">Rock</button>
+      <button class="btn" id="paper">Paper</button>
+      <button class="btn" id="scissors">Scissors</button>
+    </div>
+    <div class="text">
+      <p>Choose your first hand!</p>
+    </div>
+    <div class="scores">
+      <div id="plscore" class="score">Player Score</div>
+      <div id="cpscore" class="score">Computer Score</div>
+      <span id="playerscore">0</span>:<span id="computerscore">0</span>
+    </div>
+    <div><p class="text2">Let's play!</p></div>
+    <div>
+      <button class="play-again">Play Again?</button>
+    </div>
+    <script>
+      let playerScore = 0;
+      const playerScore_span = document.getElementById("playerscore");
+      let computerScore = 0;
+      const computerScore_span = document.getElementById("computerscore");
+      let allPossibleComputerSelections = ["rock", "paper", "scissors"];
+      const scores_div = document.querySelector(".scores");
+      let text_div = document.querySelector(".text");
+      const rock_button = document.getElementById("rock");
+      const paper_button = document.getElementById("paper");
+      const scissors_button = document.getElementById("scissors");
+      let text2_div = document.querySelector(".text2");
+      const buttonPlayAgain = document.querySelector(".play-again");
+
+      function computerPlay(array) {
+        return array[Math.floor(Math.random() * array.length)];
+      }
+
+      function playRound(playerSelection) {
+        let computerSelection = computerPlay(allPossibleComputerSelections);
+        if (computerSelection == "rock" && playerSelection == "paper") {
+          message = "Paper beats Rock, you win!";
+          ++playerScore;
+          playerScore_span.innerHTML = playerScore;
+          paper_button.classList.add("green-border");
+          setTimeout(function () {
+            paper_button.classList.remove("green-border");
+          }, 300);
+        } else if (
+          computerSelection == "rock" &&
+          playerSelection == "scissors"
+        ) {
+          message = "Rock beats Scissors, you lose!";
+          ++computerScore;
+          computerScore_span.innerHTML = computerScore;
+          scissors_button.classList.add("red-border");
+          setTimeout(function () {
+            scissors_button.classList.remove("red-border");
+          }, 300);
+        } else if (computerSelection == "paper" && playerSelection == "rock") {
+          message = "Paper beats Rock, you lose!";
+          ++computerScore;
+          computerScore_span.innerHTML = computerScore;
+          rock_button.classList.add("red-border");
+          setTimeout(function () {
+            rock_button.classList.remove("red-border");
+          }, 300);
+        } else if (
+          computerSelection == "paper" &&
+          playerSelection == "scissors"
+        ) {
+          message = "Scissors beat Paper, you win!";
+          ++playerScore;
+          playerScore_span.innerHTML = playerScore;
+          scissors_button.classList.add("green-border");
+          setTimeout(function () {
+            scissors_button.classList.remove("green-border");
+          }, 300);
+        } else if (
+          computerSelection == "scissors" &&
+          playerSelection == "paper"
+        ) {
+          message = "Scissors beat Paper, you lose!";
+          ++computerScore;
+          computerScore_span.innerHTML = computerScore;
+          paper_button.classList.add("red-border");
+          setTimeout(function () {
+            paper_button.classList.remove("red-border");
+          }, 300);
+        } else if (
+          computerSelection == "scissors" &&
+          playerSelection == "rock"
+        ) {
+          message = "Rock beats Scissors, you win!";
+          ++playerScore;
+          playerScore_span.innerHTML = playerScore;
+          rock_button.classList.add("green-border");
+          setTimeout(function () {
+            rock_button.classList.remove("green-border");
+          }, 300);
+        } else {
+          message = "It's a draw!";
+        }
+        endGame(computerScore, playerScore);
+        text_div.innerHTML = message;
+      }
+      function disableButtons() {
+        rock_button.style.visibility = "hidden";
+        paper_button.style.visibility = "hidden";
+        scissors_button.style.visibility = "hidden";
+      }
+
+      function addPlayAgainButton() {
+        buttonPlayAgain.style.visibility = "visible";
+      }
+
+      function endGame(computerScore, playerScore) {
+        if (computerScore >= 5 || playerScore >= 5) {
+          declareWinner(computerScore, playerScore);
+          disableButtons();
+          addPlayAgainButton();
+        } else {
+          text2_div.innerHTML = "Keep playing!";
+        }
+      }
+
+      function declareWinner(computerScore, playerScore) {
+        if (computerScore < playerScore) {
+          text2_div.innerHTML = "Congratulations, you won the game!";
+        } else {
+          text2_div.innerHTML = "Oh no, you lost the game!";
+        }
+      }
+
+      buttonPlayAgain.addEventListener("click", () => {
+        window.location.reload();
+      });
+      rock_button.addEventListener("click", function () {
+        playRound("rock");
+      });
+      paper_button.addEventListener("click", function () {
+        playRound("paper");
+      });
+      scissors_button.addEventListener("click", function () {
+        playRound("scissors");
+      });
+    </script>
+  </body>
 </html>
